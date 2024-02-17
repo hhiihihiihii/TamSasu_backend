@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 const rankRouter = require("./routes/rankRouter");
-app.use("/rank", rankRouter);
+app.use("/", rankRouter);
 
 
 app.listen(app.get("port"), () => {
