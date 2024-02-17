@@ -20,10 +20,17 @@ router.post('/', async (req, res) => {
     }
   });
 
-router.get('/', async (req, res) => {
+  router.get('/', async (req, res) => {
     try {
-
-    } catch(error) {
-
+      const users = await User.findAll({
+        attributes: ['name', 'time'],
+        order: [['time', 'ASC']]
+      });
+      res.status(200).json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: '서버 오류로 인해 사용자 목록을 가져올 수 없습니다.' });
     }
-});
+  });
+  
+  module.exports = router;

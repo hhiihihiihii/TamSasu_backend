@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const { sequelize } = require("./models");
-const cron = require('node-cron');
-const { swaggerUi, specs } = require('./modules/swagger');
 const app = express();
 
 app.use(
