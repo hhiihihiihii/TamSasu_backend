@@ -26,7 +26,18 @@ router.post('/', async (req, res) => {
         attributes: ['name', 'time'],
         order: [['time', 'ASC']]
       });
-      res.status(200).json(users);
+  
+      const userList = users.map(user => ({
+        name: user.name,
+        time: user.time
+      }));
+  
+      res.status(200);
+      userList.forEach(user => {
+        res.write(JSON.stringify(user));
+        res.write('\n');
+      });
+      res.end();
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: '서버 오류로 인해 사용자 목록을 가져올 수 없습니다.' });
